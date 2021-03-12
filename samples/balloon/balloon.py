@@ -116,7 +116,7 @@ class CustomDataset(utils.Dataset):
         
         # Add images
         for a in annotations:
-            # print(a)
+            print(a)
             # Get the x, y coordinaets of points of the polygons that make up
             # the outline of each object instance. There are stores in the
             # shape_attributes (see json format above)
@@ -125,7 +125,7 @@ class CustomDataset(utils.Dataset):
             else:   
                 polygons = [r['shape_attributes'] for r in a['regions']] 
             #polygons = [r['shape_attributes'] for r in a['regions']] 
-            objects = [s['region_attributes']['name'] for s in a['regions']]
+            objects = [s['region_attributes']['type'] for s in a['regions']]
             print("objects:",objects)
             name_dict = {"box": 1,"sack": 2,"pouch": 3,"icebox": 4}
             # key = tuple(name_dict)
