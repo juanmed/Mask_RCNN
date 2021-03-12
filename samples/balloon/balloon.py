@@ -120,7 +120,11 @@ class CustomDataset(utils.Dataset):
             # Get the x, y coordinaets of points of the polygons that make up
             # the outline of each object instance. There are stores in the
             # shape_attributes (see json format above)
-            polygons = [r['shape_attributes'] for r in a['regions']] 
+            if type(a['regions']) is dict:  
+                polygons = [r['shape_attributes'] for r in a['regions'].values()]   
+            else:   
+                polygons = [r['shape_attributes'] for r in a['regions']] 
+            #polygons = [r['shape_attributes'] for r in a['regions']] 
             objects = [s['region_attributes']['name'] for s in a['regions']]
             print("objects:",objects)
             name_dict = {"box": 1,"sack": 2,"pouch": 3,"icebox": 4}
